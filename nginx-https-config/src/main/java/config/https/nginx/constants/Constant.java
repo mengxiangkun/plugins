@@ -1,14 +1,10 @@
 package config.https.nginx.constants;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
  * @author mengxiangkun 
  * @date 2019/8/18
  */
 public class Constant {
-	public final Logger logger= LoggerFactory.getLogger(getClass());
 	//TODO 客户端证书路径，用了本地绝对路径，需要修改
 	public final static String CLIENT_CERT_FILE = "/usr/local/etc/nginx/crt/client.p12";
 	//TODO 客户端证书密码

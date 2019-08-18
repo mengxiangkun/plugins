@@ -13,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.util.Assert;
 
 import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
@@ -45,14 +46,14 @@ class ControllerTest {
 		//TODO 初始化信任库
 		TrustManagerFactory trustManagerFactory = TrustManagerFactory
 			.getInstance(SUN_X509);
-		KeyStore keyTrustStore = Util.getKeyStore(TRUST_STRORE_FILE, TRUST_STORE_PWD, CLIENT_KEY_STORE_TYPE);
+		KeyStore keyTrustStore = Util.getKeyStore(TRUST_STRORE_FILE, TRUST_STORE_PWD, TRUST_KEY_STORE_TYPE);
 		trustManagerFactory.init(keyTrustStore);
 		SSLContext sslContext = SSLContext.getInstance(SSL);
 		sslContext.init(keyManagerFactory.getKeyManagers(), trustManagerFactory.getTrustManagers(), new SecureRandom());
 		CloseableHttpClient closeableHttpClient = HttpClients.custom().setSSLContext(sslContext).build();
 		HttpGet getCall = new HttpGet();
 		getCall.setURI(new URI(URI));
-		CloseableHttpResponse response = closeableHttpClient.execute(getCall);
-
+		Integer execute = closeableHttpClient.execute(getCall, httpResponse -> httpResponse.getEntity().getContent().available());
+		Assert.isTrue(true, String.valueOf(execute.equals(0)));
 	}
 }
