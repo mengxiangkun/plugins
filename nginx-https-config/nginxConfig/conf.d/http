@@ -62,8 +62,8 @@ http {
 	      proxy_redirect off;
         location / {
 					proxy_pass https://dpp_server;
-
-					#proxy_ssl_trusted_certificate /usr/local/etc/nginx/crt/server.crt;
+					proxy_ssl_certificate      /usr/local/etc/nginx/crt/server.crt;
+          proxy_ssl_certificate_key  /usr/local/etc/nginx/crt/server.key;
 					proxy_ssl_session_reuse on;
           #proxy_redirect off;
           #proxy_next_upstream     off;
