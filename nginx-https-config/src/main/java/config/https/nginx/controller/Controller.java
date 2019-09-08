@@ -21,14 +21,8 @@ public class Controller {
 	private final Logger logger= LoggerFactory.getLogger(getClass());
 	@GetMapping("/")
 	public String getOk() {
+
 	logger.info(Constant.OK);
 		return Constant.OK;
 	}
-	@NonNull String str;
-	public void test(){
-		return;
-	}
-}
-interface sdf{
-
 }
